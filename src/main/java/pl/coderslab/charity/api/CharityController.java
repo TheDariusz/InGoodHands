@@ -5,8 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.donation.Institution;
-import pl.coderslab.charity.donation.InstitutionServiceImpl;
+import pl.coderslab.charity.donation.InstitutionService;
 
 import java.util.List;
 
@@ -16,12 +17,15 @@ import java.util.List;
 public class CharityController {
 
     private static final String MAIN_VIEW = "index";
-    private final InstitutionServiceImpl institutionService;
+    private final InstitutionService institutionService;
+    private final DonationService donationService;
 
     @GetMapping
     public String getMainView(Model model) {
         final List<Institution> institutions = institutionService.fetchAllInstitutions();
         model.addAttribute("institutions", institutions);
+        model.addAttribute("donations", donationService.countDonations());
+        model.addAttribute("bags", donationService.sumOfBags());
         return MAIN_VIEW;
     }
 
