@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.donation.DonationService;
-import pl.coderslab.charity.donation.Institution;
 import pl.coderslab.charity.donation.InstitutionService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "/charity")
@@ -22,8 +19,7 @@ public class CharityController {
 
     @GetMapping
     public String getMainView(Model model) {
-        final List<Institution> institutions = institutionService.fetchAllInstitutions();
-        model.addAttribute("institutions", institutions);
+        model.addAttribute("institutions", institutionService.fetchAllInstitutions());
         model.addAttribute("donations", donationService.countDonations());
         model.addAttribute("bags", donationService.sumOfBags());
         return MAIN_VIEW;

@@ -83,12 +83,12 @@
         <ul class="help--slides-items">
             <li th:each="i : ${#numbers.sequence( 0, institutions.size()-1, 2)}">
                 <div class="col">
-                    <div class="title" th:text="${institutions[i].name}"></div>
-                    <div class="subtitle" th:text="${institutions[i].description}"></div>
+                    <div class="title" th:text="'Fundacja &quot;' + ${institutions[i].name} + '&quot;'"></div>
+                    <div class="subtitle" th:text="'Cel i misja: ' + ${institutions[i].description}"></div>
                 </div>
                 <div class="col">
-                    <div class="title" th:text="${institutions[i+1].name}"></div>
-                    <div class="subtitle" th:text="${institutions[i+1].description}"></div>
+                    <div class="title" th:text="'Fundacja &quot;' + ${institutions[i+1].name} + '&quot;'"></div>
+                    <div class="subtitle" th:text="'Cel i misja: ' + ${institutions[i+1].description}"></div>
                 </div>
             </li>
         </ul>
