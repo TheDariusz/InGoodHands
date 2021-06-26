@@ -80,7 +80,7 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
 
-        <ul class="help--slides-items">
+        <ul class="help--slides-items" th:if="${institutions.size()}">
             <li th:each="i : ${#numbers.sequence( 0, institutions.size()-1, 2)}">
                 <div class="col">
                     <div class="title" th:text="'Fundacja &quot;' + ${institutions[i].name} + '&quot;'"></div>
