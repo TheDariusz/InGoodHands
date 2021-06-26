@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Document</title>
 
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-</head>
+<div th:replace="fragments/header :: head"></div>
 <body>
 <div th:replace="fragments/header :: header"></div>
 
@@ -15,7 +9,6 @@
     <div class="container container--85">
         <div class="stats--item">
             <em th:text="${bags}"></em>
-
             <h3>Oddanych worków</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
                 tempora!</p>
