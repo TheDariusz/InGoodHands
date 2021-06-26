@@ -10,7 +10,7 @@ public class DonationServiceImpl implements DonationService {
 
     @Override
     public int sumOfBags() {
-        return repository.sumDonationBags();
+        return repository.sumDonationBags().orElse(0);
     }
 
     @Override

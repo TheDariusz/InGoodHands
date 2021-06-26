@@ -20,11 +20,13 @@ create table institution
 create table donation
 (
     id              int8 not null,
+    street          varchar(255),
     city            varchar(255),
     pick_up_comment varchar(255),
     pick_up_date    date,
     pick_up_time    time,
     quantity        int4 not null,
+    phone           varchar(64),
     zip_code        varchar(255),
     institution_id  int8 not null,
     primary key (id),
