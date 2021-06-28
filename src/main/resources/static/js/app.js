@@ -195,16 +195,67 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 5;
       this.$step.parentElement.hidden = this.currentStep >= 5;
 
-      // TODO: get data from inputs and show them in summary
     }
 
     validateForm() {
-      const quantity = document.querySelector("#quantity");
-      if(quantity.value>10) {
-        alert("liczba worków nie może być większa od 10!");
+      //check categories
+      const categories = [...document.querySelectorAll('input[name="categories"]:checked')]
+      if (categories.length===0) {
+        alert("wybierz przynajmniej jedną kategorię!");
         return false;
       }
+      //check quantity
+      const quantity = document.querySelector("#quantity");
+      if (this.currentStep===2 && (quantity.value>10 || quantity.value<1)) {
+        alert("liczba worków powinna być z przedziału 1-10 ");
+        return false;
+      }
+
+      //check institutions
+      const institution = document.querySelector('input[name="institution"]:checked');
+      if (this.currentStep===3 && institution===null) {
+        alert("wybierz przynajmniej jedną instytucję!");
+        return false;
+      }
+
+      //check address
+      const street = document.querySelector('input[name="street"]').value;
+      const city = document.querySelector('input[name="city"]').value;
+      const zipCode = document.querySelector('input[name="zipCode"]').value;
+      const phone = document.querySelector('input[name="phone"]').value;
+
+      if (this.currentStep===4) {
+        if (this.isEmpty(street) || this.isEmpty(city) || this.isEmpty(zipCode)) {
+          alert("podaj kompletny adres!");
+          return false;
+        }
+
+        if (!/[0-9]{2}-[0-9]{3}/.test(zipCode)) {
+          alert("kod pocztowy powinien być w formacie xx-xxx");
+          return false;
+        }
+
+        if (!/[0-9]{9}/.test(phone)) {
+          alert("podaj numer telefonu w formacie 9cyfr!");
+          return false
+        }
+      }
+
+      //check date and time
+      const pickUpDate = document.querySelector('input[name="pickUpDate"]').value;
+      const pickUpTime = document.querySelector('input[name="pickUpTime"]').value;
+      if (this.currentStep===4) {
+        if (this.isEmpty(pickUpDate) || this.isEmpty(pickUpTime)) {
+          alert("podaj datę i godzinę odbioru!");
+          return false
+        }
+      }
+
       return true;
+    }
+
+    isEmpty(str) {
+      return !str.trim().length;
     }
   }
   const form = document.querySelector(".form--steps");
