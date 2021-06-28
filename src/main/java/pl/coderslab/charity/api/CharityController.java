@@ -29,11 +29,6 @@ public class CharityController {
         return MAIN_VIEW;
     }
 
-    @GetMapping(value = "/contact")
-    public String getContactView(Model model) {
-        return "redirect:#contact";
-    }
-
     @GetMapping(value = "/form")
     public String getFormView(Model model) {
         DonationDto donationDto = new DonationDto();
