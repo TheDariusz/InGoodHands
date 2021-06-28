@@ -13,7 +13,7 @@ public class InstitutionServiceImpl implements InstitutionService {
     private final InstitutionMapper institutionMapper;
 
     @Override
-    public List<Institution> fetchAllInstitutions() {
+    public List<Institution> fetchInstitutions() {
         return institutionRepository.findAll().stream()
                 .map(institutionMapper::toModel)
                 .collect(Collectors.toList());

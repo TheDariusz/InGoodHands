@@ -23,7 +23,7 @@ public class CharityController {
 
     @GetMapping
     public String getMainView(Model model) {
-        model.addAttribute("institutions", institutionService.fetchAllInstitutions());
+        model.addAttribute("institutions", institutionService.fetchInstitutions());
         model.addAttribute("donations", donationService.countDonations());
         model.addAttribute("bags", donationService.sumOfBags());
         return MAIN_VIEW;
@@ -38,7 +38,7 @@ public class CharityController {
     public String getFormView(Model model) {
         DonationDto donationDto = new DonationDto();
         model.addAttribute("categories", categoryService.fetchCategories());
-        model.addAttribute("institutions", institutionService.fetchAllInstitutions());
+        model.addAttribute("institutions", institutionService.fetchInstitutions());
         model.addAttribute("donation", donationDto);
         return "form";
     }

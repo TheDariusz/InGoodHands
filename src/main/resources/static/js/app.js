@@ -178,9 +178,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const pickUpTime = document.querySelector('input[name="pickUpTime"]').value;
         const moreInfo = document.querySelector('textarea[name="more_info"]').value;
 
-        const categoriesText = categories.map(cat => cat.value).join(",");
+        const categoriesText = categories.map(cat => cat.value).join(", ");
         arrHowManyWho[0].innerText=howMany + " worki: " + categoriesText;
-        arrHowManyWho[1].innerText=forWho;
+        arrHowManyWho[1].innerText="Dla fundacji \"" + forWho + "\"";
 
         let arrAddress = [...document.querySelectorAll(".summary .form-section--column li")];
         arrAddress[0].innerText=street;
@@ -244,9 +244,21 @@ document.addEventListener("DOMContentLoaded", function() {
       //check date and time
       const pickUpDate = document.querySelector('input[name="pickUpDate"]').value;
       const pickUpTime = document.querySelector('input[name="pickUpTime"]').value;
+      const dateNow = new Date();
+      const datePickUpDate = new Date(pickUpDate);
+      const pickUpHour = pickUpTime.split(":")[0]
+
       if (this.currentStep===4) {
         if (this.isEmpty(pickUpDate) || this.isEmpty(pickUpTime)) {
           alert("podaj datę i godzinę odbioru!");
+          return false
+        }
+        if (datePickUpDate.getTime()<=dateNow.getTime()) {
+          alert("data odbioru nie może być wcześniejsza niż na jutro!");
+          return false
+        }
+        if (pickUpHour<8 || pickUpHour>20) {
+          alert("godzina odbioru musi być między 8 a 20");
           return false
         }
       }
