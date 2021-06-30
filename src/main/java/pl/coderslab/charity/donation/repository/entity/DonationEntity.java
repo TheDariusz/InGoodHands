@@ -32,7 +32,7 @@ public class DonationEntity {
     private Set<CategoryEntity> categories;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "institution_id", nullable = false)
+    @JoinColumn(name = "institution_id", updatable = false, nullable = false)
     private InstitutionEntity institution;
 
     private String street;
@@ -47,6 +47,18 @@ public class DonationEntity {
         this.quantity = quantity;
         this.categories = categories;
         this.institution = institution;
+        this.street = street;
+        this.city = city;
+        this.phone = phone;
+        this.zipCode = zipCode;
+        this.pickUpDate = pickUpDate;
+        this.pickUpTime = pickUpTime;
+        this.pickUpComment = pickUpComment;
+    }
+
+    public DonationEntity(int quantity, Set<CategoryEntity> categories, String street, String city, String phone, String zipCode, LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment) {
+        this.quantity = quantity;
+        this.categories = categories;
         this.street = street;
         this.city = city;
         this.phone = phone;

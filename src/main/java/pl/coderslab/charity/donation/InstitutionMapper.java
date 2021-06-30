@@ -10,7 +10,7 @@ public class InstitutionMapper {
                 institutionEntity.getName(),
                 institutionEntity.getDescription(),
                 institutionEntity.getDonations().stream()
-                        .map(donationEntity -> new DonationMapper().toModel(donationEntity))
+                        .map(donationEntity -> new DonationMapper().toModel(donationEntity, institutionEntity))
                         .collect(Collectors.toSet())
         );
     }

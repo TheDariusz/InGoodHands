@@ -29,8 +29,8 @@ public class CharityApplication {
     }
 
     @Bean
-    public DonationService donationService(DonationRepository donationRepository, InstitutionService institutionService) {
-        return new DonationServiceImpl(donationRepository, institutionService, new DonationMapper());
+    public DonationService donationService(DonationRepository donationRepository, InstitutionService institutionService, CategoryService categoryService) {
+        return new DonationServiceImpl(donationRepository, institutionService, new DonationMapper(), categoryService);
     }
 
     @Bean

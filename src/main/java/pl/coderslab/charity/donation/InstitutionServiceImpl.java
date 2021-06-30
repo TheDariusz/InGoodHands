@@ -21,9 +21,9 @@ public class InstitutionServiceImpl implements InstitutionService {
     }
 
     @Override
-    public Institution fetchInstitutionByName(String name) {
-        final InstitutionEntity institutionEntity = institutionRepository.findByName(name);
-        return institutionMapper.toModel(institutionEntity);
+    public InstitutionEntity fetchInstitutionByName(String name) {
+        return institutionRepository.findByName(name);
+//        return institutionMapper.toModel(institutionEntity);
     }
 
     @Override
