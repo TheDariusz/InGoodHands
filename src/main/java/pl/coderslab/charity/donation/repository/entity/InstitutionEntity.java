@@ -4,6 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import pl.coderslab.charity.donation.Donation;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,5 +36,16 @@ public class InstitutionEntity {
     public InstitutionEntity(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+
+    public InstitutionEntity(String name, String description, Set<DonationEntity> donations) {
+        this.name=name;
+        this.description=description;
+        this.donations=donations;
+    }
+
+    public void addDonationEntity(DonationEntity donationEntity) {
+        this.donations.add(donationEntity);
+        donationEntity.setInstitution(this);
     }
 }

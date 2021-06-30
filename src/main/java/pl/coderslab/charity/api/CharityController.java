@@ -40,6 +40,7 @@ public class CharityController {
 
     @PostMapping(value = "/form")
     public String getForm(DonationDto donationDto) {
+        donationService.keepDonation(donationDto);
         return "form-confirmation";
     }
 

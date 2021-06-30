@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import pl.coderslab.charity.donation.CategoryMapper;
 import pl.coderslab.charity.donation.CategoryService;
 import pl.coderslab.charity.donation.CategoryServiceImpl;
+import pl.coderslab.charity.donation.DonationMapper;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.donation.DonationServiceImpl;
 import pl.coderslab.charity.donation.InstitutionMapper;
@@ -28,8 +29,8 @@ public class CharityApplication {
     }
 
     @Bean
-    public DonationService donationService(DonationRepository repository) {
-        return new DonationServiceImpl(repository);
+    public DonationService donationService(DonationRepository donationRepository, InstitutionService institutionService) {
+        return new DonationServiceImpl(donationRepository, institutionService, new DonationMapper());
     }
 
     @Bean
