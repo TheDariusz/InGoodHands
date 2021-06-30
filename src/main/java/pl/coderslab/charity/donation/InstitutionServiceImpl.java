@@ -2,6 +2,7 @@ package pl.coderslab.charity.donation;
 
 import lombok.RequiredArgsConstructor;
 import pl.coderslab.charity.donation.repository.InstitutionRepository;
+import pl.coderslab.charity.donation.repository.entity.InstitutionEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,5 +18,17 @@ public class InstitutionServiceImpl implements InstitutionService {
         return institutionRepository.findAll().stream()
                 .map(institutionMapper::toModel)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public InstitutionEntity fetchInstitutionByName(String name) {
+        return institutionRepository.findByName(name);
+//        return institutionMapper.toModel(institutionEntity);
+    }
+
+    @Override
+    public void save(Institution institution) {
+        final InstitutionEntity institutionEntity = institutionMapper.toEntity(institution);
+        institutionRepository.save(institutionEntity);
     }
 }

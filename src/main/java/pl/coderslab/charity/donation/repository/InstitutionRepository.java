@@ -12,4 +12,5 @@ public interface InstitutionRepository extends JpaRepository<InstitutionEntity, 
     InstitutionEntity findByName(String name);
 
     List<InstitutionEntity> findAll();
+
 }
