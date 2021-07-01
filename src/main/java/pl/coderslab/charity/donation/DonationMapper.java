@@ -33,7 +33,7 @@ public class DonationMapper {
 
     public Donation toModel(DonationEntity donationEntity, InstitutionEntity institutionEntity) {
         final Set<Category> categories = donationEntity.getCategories().stream()
-                .map(c -> new CategoryMapper().toModel(c))
+                .map(categoryEntity -> new CategoryMapper().toModel(categoryEntity))
                 .collect(Collectors.toSet());
 
         final Institution institution = new InstitutionMapper().toModel(institutionEntity);

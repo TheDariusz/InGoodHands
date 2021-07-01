@@ -9,7 +9,6 @@ import pl.coderslab.charity.donation.repository.entity.InstitutionEntity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -35,13 +34,17 @@ public class DonationServiceImpl implements DonationService {
     @Transactional
     public void keepDonation(DonationDto donationDto) {
         InstitutionEntity institutionEntity = institutionService.fetchInstitutionByName(donationDto.getInstitution());
-        DonationEntity donationEntity = MapToDonationEntity(donationDto);
+        final Set<CategoryEntity> categories = donationDto.getCategories().stream()
+                .map(category -> categoryService.findCategoryByName(category.getName()))
+                .collect(Collectors.toSet());
+        DonationEntity donationEntity = mapToDonationEntity(donationDto);
         donationEntity.setInstitution(institutionEntity);
+        donationEntity.setCategories(categories);
         donationRepository.save(donationEntity);
         institutionEntity.addDonationEntity(donationEntity);
     }
 
-    private Donation MapToDonation(DonationDto donationDto) {
+    private Donation mapToDonation(DonationDto donationDto) {
 
         return new Donation(
                 Integer.parseInt(donationDto.getQuantity()),
@@ -56,15 +59,10 @@ public class DonationServiceImpl implements DonationService {
         );
     }
 
-        private DonationEntity MapToDonationEntity(DonationDto donationDto) {
-
-            final Set<CategoryEntity> categories = donationDto.getCategories().stream()
-                    .map(category -> categoryService.findCategoryByName(category.getName()))
-                    .collect(Collectors.toSet());
+        private DonationEntity mapToDonationEntity(DonationDto donationDto) {
 
             return new DonationEntity(
                     Integer.parseInt(donationDto.getQuantity()),
-                    categories,
                     donationDto.getStreet(),
                     donationDto.getPhone(),
                     donationDto.getCity(),

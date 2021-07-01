@@ -15,7 +15,8 @@ public class InstitutionServiceImpl implements InstitutionService {
 
     @Override
     public List<Institution> fetchInstitutions() {
-        return institutionRepository.findAll().stream()
+        final List<InstitutionEntity> institutionEntities = institutionRepository.findAll();
+        return institutionEntities.stream()
                 .map(institutionMapper::toModel)
                 .collect(Collectors.toList());
     }
@@ -23,7 +24,6 @@ public class InstitutionServiceImpl implements InstitutionService {
     @Override
     public InstitutionEntity fetchInstitutionByName(String name) {
         return institutionRepository.findByName(name);
-//        return institutionMapper.toModel(institutionEntity);
     }
 
     @Override
