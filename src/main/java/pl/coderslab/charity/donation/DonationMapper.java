@@ -1,6 +1,5 @@
 package pl.coderslab.charity.donation;
 
-import pl.coderslab.charity.donation.repository.entity.CategoryEntity;
 import pl.coderslab.charity.donation.repository.entity.DonationEntity;
 import pl.coderslab.charity.donation.repository.entity.InstitutionEntity;
 
@@ -8,19 +7,10 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class DonationMapper {
+
     public DonationEntity toEntity(Donation donation) {
-
-        final Set<CategoryEntity> categoryEntities = donation.getCategories().stream()
-                .map(c -> new CategoryMapper().toEntity(c))
-                .collect(Collectors.toSet());
-
-        final InstitutionEntity institutionEntity = new InstitutionMapper()
-                .toEntity(donation.getInstitution());
-
         return new DonationEntity(
                 donation.getQuantity(),
-                categoryEntities,
-                institutionEntity,
                 donation.getStreet(),
                 donation.getCity(),
                 donation.getPhone(),

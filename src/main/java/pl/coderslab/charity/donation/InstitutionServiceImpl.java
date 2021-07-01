@@ -31,4 +31,9 @@ public class InstitutionServiceImpl implements InstitutionService {
         final InstitutionEntity institutionEntity = institutionMapper.toEntity(institution);
         institutionRepository.save(institutionEntity);
     }
+
+    @Override
+    public InstitutionEntity fetchInstitution(Institution institution) {
+        return institutionRepository.findByName(institution.getName());
+    }
 }
