@@ -8,10 +8,7 @@ public class InstitutionMapper {
     public Institution toModel(InstitutionEntity institutionEntity) {
         return new Institution(
                 institutionEntity.getName(),
-                institutionEntity.getDescription(),
-                institutionEntity.getDonations().stream()
-                        .map(donationEntity -> new DonationMapper().toModel(donationEntity, institutionEntity))
-                        .collect(Collectors.toSet())
+                institutionEntity.getDescription()
         );
     }
 

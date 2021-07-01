@@ -11,4 +11,5 @@ public interface InstitutionService {
 
     void save(Institution institution);
 
+    InstitutionEntity fetchInstitution(Institution institution);
 }

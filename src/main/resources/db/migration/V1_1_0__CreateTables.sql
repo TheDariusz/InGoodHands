@@ -40,7 +40,6 @@ create table donation_categories
     donation_id   int8 not null,
     categories_id int4 not null,
     primary key (donation_id, categories_id),
-    constraint uk_categories unique (categories_id),
     constraint fk_category
         foreign key (categories_id)
             references category,

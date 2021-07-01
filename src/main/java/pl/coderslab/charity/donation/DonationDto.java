@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +27,20 @@ public class DonationDto {
     private String pickUpDate;
     private String pickUpTime;
     private String pickUpComment;
+
+    public Donation toModel() {
+        return new Donation(
+                Integer.parseInt(this.getQuantity()),
+                Set.copyOf(this.categories),
+                new Institution(institution, null),
+                this.street,
+                this.phone,
+                this.city,
+                this.zipCode,
+                LocalDate.parse(this.pickUpDate),
+                LocalTime.parse(this.pickUpTime),
+                this.pickUpComment
+        );
+    }
 }
+

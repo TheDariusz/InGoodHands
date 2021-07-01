@@ -6,11 +6,11 @@ import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.time.LocalDate;
@@ -29,6 +29,12 @@ public class DonationEntity {
     private int quantity;
 
     @OneToMany(cascade = CascadeType.MERGE)
+    @JoinTable(
+            name = "donation_categories",
+            joinColumns = @JoinColumn(name = "donation_id"),
+            inverseJoinColumns = @JoinColumn(name = "categories_id"
+            )
+    )
     private Set<CategoryEntity> categories;
 
     @ManyToOne(cascade = CascadeType.MERGE)
@@ -56,9 +62,8 @@ public class DonationEntity {
         this.pickUpComment = pickUpComment;
     }
 
-    public DonationEntity(int quantity, Set<CategoryEntity> categories, String street, String city, String phone, String zipCode, LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment) {
+    public DonationEntity(int quantity, String street, String city, String phone, String zipCode, LocalDate pickUpDate, LocalTime pickUpTime, String pickUpComment) {
         this.quantity = quantity;
-        this.categories = categories;
         this.street = street;
         this.city = city;
         this.phone = phone;
