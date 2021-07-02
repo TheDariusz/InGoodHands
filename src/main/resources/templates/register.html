@@ -25,6 +25,9 @@
         <div class="ui-state-error">
           <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
         </div>
+        <div class="ui-state-error">
+          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
       </form>
     </section>
 <div th:replace="fragments/footer :: foot"></div>

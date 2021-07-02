@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.donation.CategoryService;
 import pl.coderslab.charity.donation.DonationDto;
 import pl.coderslab.charity.donation.DonationService;
@@ -58,6 +59,16 @@ public class CharityController {
     @GetMapping(value = "/login")
     public String getLoginView() {
         return LOGIN_VIEW;
+    }
+
+    @PostMapping(value = "/login")
+    public String getLoginForm( @RequestParam(value = "error", required = false) String error,   Model model) {
+        String errorMessage = null;
+        if (error!=null) {
+            errorMessage = "Username or Password is incorrect !!";
+        }
+        model.addAttribute("errorMessage", errorMessage);
+        return "login";
     }
 
     @GetMapping(value = "/register")

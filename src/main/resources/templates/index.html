@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:replace="fragments/header :: head"></div>
 <body>
@@ -17,6 +17,11 @@
     <div class="stats--item">
       <em th:text="${donations} ?: 0"></em>
       <h3>Przekazanych darów</h3>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
+        quam.</p>
+    </div>
+    <div class="stats--item" sec:authorize="isAuthenticated()">
+      <h3>jest zalogowany</h3>
       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
         quam.</p>
     </div>
