@@ -27,6 +27,7 @@ public class CharityController {
     private static final String FORM_CONFIRMATION_VIEW = "form-confirmation";
     private static final String LOGIN_VIEW = "login";
     private static final String REGISTER_VIEW = "register";
+    private static final String LOGOUT_VIEW = "logout";
 
     private final InstitutionService institutionService;
     private final DonationService donationService;
@@ -69,6 +70,11 @@ public class CharityController {
         }
         model.addAttribute("errorMessage", errorMessage);
         return "login";
+    }
+
+    @GetMapping("/logout")
+    public String getLogoutView() {
+        return LOGOUT_VIEW;
     }
 
     @GetMapping(value = "/register")
