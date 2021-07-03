@@ -12,6 +12,7 @@ import pl.coderslab.charity.donation.CategoryService;
 import pl.coderslab.charity.donation.DonationDto;
 import pl.coderslab.charity.donation.DonationService;
 import pl.coderslab.charity.donation.InstitutionService;
+import pl.coderslab.charity.mail.EmailService;
 import pl.coderslab.charity.user.UserDto;
 import pl.coderslab.charity.user.UserService;
 
@@ -33,6 +34,7 @@ public class CharityController {
     private final DonationService donationService;
     private final CategoryService categoryService;
     private final UserService userService;
+    private final EmailService emailService;
 
     @GetMapping
     public String getMainView(Model model) {
@@ -99,4 +101,5 @@ public class CharityController {
             return LOGIN_VIEW;
         }
     }
+
 }

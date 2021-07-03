@@ -1,7 +1,5 @@
 package pl.coderslab.charity.user;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -15,7 +13,6 @@ import java.util.Set;
 
 
 public class UserDetailsSecurityService implements UserDetailsService {
-    private static final Logger log = LoggerFactory.getLogger(UserDetailsSecurityService.class);
     private UserService userService;
 
     @Autowired
