@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class CategoryServiceImpl implements CategoryService {
+public class CharityCategoryService implements CategoryService {
 
     private final CategoryRepository repository;
     private final CategoryMapper mapper;

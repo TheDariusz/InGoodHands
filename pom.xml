@@ -21,8 +21,9 @@
         <postgresql.version>42.2.20</postgresql.version>
         <flyway.version>7.9.1</flyway.version>
         <thymeleaf-version>3.0.4.RELEASE</thymeleaf-version>
+        <starter-email-version>2.3.4.RELEASE</starter-email-version>
     </properties>
-
+<!--SPRING BOOT-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,27 +47,46 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>${starter-email-version}</version>
+        </dependency>
+<!--THYMELEAF-->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+            <version>${thymeleaf-version}</version>
+        </dependency>
+<!--LOMBOK-->
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+<!--TOMCAT-->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
         </dependency>
+<!--POSTGRESQL / FLYWAY       -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postgresql.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>${flyway.version}</version>
+        </dependency>
+<!--TESTS        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
