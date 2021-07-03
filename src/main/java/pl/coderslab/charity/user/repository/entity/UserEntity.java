@@ -40,7 +40,7 @@ public class UserEntity {
     public UserEntity(String email, String password, int enabled, Set<RoleEntity> roleEntities) {
         this.email = email;
         this.password = password;
-        this.enabled = enabled;
+        this.enabled = 0;
         this.roleEntities = roleEntities;
     }
 }

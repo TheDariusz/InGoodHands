@@ -23,5 +23,15 @@ public class CharityEmailService implements EmailService {
         emailSender.send(template);
     }
 
+    @Override
+    public void sendRegistrationConfirmation(String to, String subject, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("noreply@thedariusz.com");
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        emailSender.send(message);
+    }
+
 
 }

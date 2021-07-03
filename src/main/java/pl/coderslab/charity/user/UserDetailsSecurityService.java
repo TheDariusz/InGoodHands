@@ -22,16 +22,27 @@ public class UserDetailsSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        boolean enabled = true;
         return userService.findByUserEmail(email)
                 .map(this::mapToUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException(email));
     }
 
     private UserDetails mapToUserDetails(UserDto userDto) {
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         userDto.getRoleEntities().forEach(
                 role -> grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()))
         );
-        return new User(userDto.getEmail(), userDto.getPassword(), grantedAuthorities);
+        return new User(
+                userDto.getEmail(),
+                userDto.getPassword(),
+                userDto.getEnabled()==1,
+                accountNonExpired,
+                credentialsNonExpired,
+                accountNonLocked,
+                grantedAuthorities);
     }
 }
