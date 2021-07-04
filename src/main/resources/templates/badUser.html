@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+<div th:replace="fragments/header :: head"></div>
+<body>
+<!--<div th:replace="fragments/header :: header"></div>-->
+
+    <section class="login-page">
+      <h1 th:text="${param.message[0]}">Error Message</h1>
+    <a th:href="@{/charity/registration}" th:text="signup">signup</a>
+    </section>
+
+<div th:replace="fragments/footer :: foot"></div>
+  </body>
+</html>
