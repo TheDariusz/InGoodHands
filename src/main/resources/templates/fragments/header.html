@@ -7,8 +7,7 @@
   <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 
-<header th:fragment="header" class="header--main-page">
-  <nav class="container container--70">
+<nav th:fragment="nav" class="container container--70">
     <ul class="nav--actions" sec:authorize="isAnonymous()">
       <li><a th:href="@{/charity/login}" class="btn btn--small btn--without-border">Zaloguj</a></li>
       <li><a th:href="@{/charity/register}" class="btn btn--small btn--highlighted">Załóż konto</a></li>
@@ -33,12 +32,3 @@
       <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
     </ul>
   </nav>
-  <div class="slogan container container--90">
-    <div class="slogan--item">
-      <h1>
-        Zacznij pomagać!<br/>
-        Oddaj niechciane rzeczy w zaufane ręce
-      </h1>
-    </div>
-  </div>
-</header>

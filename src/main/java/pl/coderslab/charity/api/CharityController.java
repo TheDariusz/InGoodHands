@@ -130,8 +130,8 @@ public class CharityController {
         Calendar cal = Calendar.getInstance();
 
         if ((verificationToken.getExpiryDate().getTime() - cal.getTime().getTime()) <= 0) {
-            String messageValue = messages.getMessage("auth.message.expired", null, locale);
-            model.addAttribute("message", messageValue);
+            String message = messages.getMessage("auth.message.expired", null, locale);
+            model.addAttribute("message", message);
             return "redirect:/badUser";
         }
 

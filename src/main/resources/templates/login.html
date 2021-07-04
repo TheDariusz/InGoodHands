@@ -3,8 +3,9 @@
 
 <div th:replace="fragments/header :: head"></div>
 <body>
-<div th:replace="fragments/header :: header"></div>
-
+<header>
+<div th:replace="fragments/header :: nav"></div>
+</header>
     <section class="login-page">
       <h2>Zaloguj się</h2>
       <form th:method="post" th:action="@{/charity/login}" name="loginform">
