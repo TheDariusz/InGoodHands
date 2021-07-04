@@ -11,7 +11,6 @@ import pl.coderslab.charity.user.repository.entity.VerificationTokenEntity;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 public class CharityUserService implements UserService {
@@ -23,28 +22,30 @@ public class CharityUserService implements UserService {
     private final VerificationTokenRepository tokenRepository;
 
     @Override
-    public Optional<UserDto> findByUserEmail(String email) {
-        return userRepository.findByEmail(email)
-                .map(userMapper::toUserDto);
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     @Override
-    public UserEntity saveUser(UserEntity userEntity) {
-        userEntity.setPassword(encoder.encode(userEntity.getPassword()));
-//        userEntity.setEnabled(1);
+    public UserEntity saveUser(UserDto userDto) {
+        UserEntity user = new UserEntity();
+        user.setEmail(userDto.getEmail());
+        user.setPassword(encoder.encode(userDto.getPassword()));
+        user.setEnabled(0);
         RoleEntity userRoleEntity = roleRepository.findByName("ROLE_USER");
-        userEntity.setRoleEntities(new HashSet<>(Arrays.asList(userRoleEntity)));
-        final UserEntity savedUserEntity = userRepository.save(userEntity);
-        return savedUserEntity;
+        user.setRoleEntities(new HashSet<>(Arrays.asList(userRoleEntity)));
+        return userRepository.save(user);
+    }
+
+    @Override
+    public UserEntity saveRegisteredUser(UserEntity userEntity) {
+        return userRepository.save(userEntity);
     }
 
     public boolean existUserDto(UserDto userDto) {
-        return findByUserEmail(userDto.getEmail()).isPresent();
+        return findByEmail(userDto.getEmail())!=null;
     }
 
-    public UserEntity saveUser(UserDto userDto) {
-        return saveUser(userMapper.toEntity(userDto));
-    }
 
     @Override
     public VerificationTokenEntity getVerificationToken(String verificationToken) {

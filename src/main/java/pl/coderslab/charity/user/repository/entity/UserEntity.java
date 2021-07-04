@@ -37,10 +37,14 @@ public class UserEntity {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<RoleEntity> roleEntities;
 
-    public UserEntity(String email, String password, int enabled, Set<RoleEntity> roleEntities) {
+    public UserEntity(String email, String password, Set<RoleEntity> roleEntities) {
         this.email = email;
         this.password = password;
         this.enabled = 0;
         this.roleEntities = roleEntities;
+    }
+
+    public boolean isEnabled() {
+        return this.enabled==1;
     }
 }

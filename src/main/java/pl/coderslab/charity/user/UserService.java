@@ -4,13 +4,9 @@ package pl.coderslab.charity.user;
 import pl.coderslab.charity.user.repository.entity.UserEntity;
 import pl.coderslab.charity.user.repository.entity.VerificationTokenEntity;
 
-import java.util.Optional;
-
 public interface UserService {
 
-    Optional<UserDto> findByUserEmail(String email);
-
-    UserEntity saveUser(UserEntity userEntity);
+    UserEntity saveRegisteredUser(UserEntity userEntity);
 
     boolean existUserDto(UserDto userDto);
 
@@ -18,5 +14,7 @@ public interface UserService {
 
     void createVerificationToken(UserEntity user, String token);
 
-    VerificationTokenEntity getVerificationToken(String VerificationToken);
+    VerificationTokenEntity getVerificationToken(String verificationToken);
+
+    UserEntity findByEmail(String email);
 }

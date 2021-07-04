@@ -136,9 +136,9 @@ public class CharityController {
         }
 
         user.setEnabled(1);
-        userService.saveUser(user);
+        userService.saveRegisteredUser(user);
 
-        return "redirect:/login";
+        return "redirect:/charity/login";
     }
 
     @GetMapping("/badUser")
