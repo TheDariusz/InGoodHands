@@ -97,7 +97,7 @@ public class CharityController {
     }
 
     @PostMapping("/register")
-    public String getRegisterForm(@Valid UserDto userDto, WebRequest request, BindingResult bindingResult) {
+    public String getRegisterForm(@Valid UserDto userDto, BindingResult bindingResult, WebRequest request) {
         if (userService.existUserDto(userDto)) {
             bindingResult.rejectValue("email", "error.user",
                     "User '" + userDto.getEmail() + "' is already register");

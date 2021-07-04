@@ -274,4 +274,17 @@ document.addEventListener("DOMContentLoaded", function() {
   if (form !== null) {
     new FormSteps(form);
   }
+  const registerForm = document.getElementById("registerForm");
+  const password1 = document.getElementById("password1")
+  const password2 = document.getElementById("password2")
+  const password_check = document.getElementById("password_check");
+
+  registerForm.addEventListener('submit', function (e) {
+    if (password1.value!==password2.value) {
+      e.preventDefault();
+      password_check.innerText="hasła nie pasują!";
+    } else {
+      password_check.innerText="";
+    }
+  })
 });
