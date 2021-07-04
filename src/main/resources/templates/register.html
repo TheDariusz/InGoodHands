@@ -3,30 +3,28 @@
 
 <div th:replace="fragments/header :: head"></div>
 <body>
-<div th:replace="fragments/header :: header"></div>
-
+<header>
+<div th:replace="fragments/header :: nav"></div>
+</header>
     <section class="login-page">
       <h2>Załóż konto</h2>
-      <form th:object="${userDto}" method="post">
+      <form th:object="${userDto}" th:method="post" th:action="@{/charity/register}" id="registerForm">
         <div class="form-group">
           <input type="email" name="email" placeholder="Email" th:field="*{email}" />
+          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
         </div>
         <div class="form-group">
-          <input type="password" name="password" placeholder="Hasło" th:field="*{password}" />
+          <input type="password" name="password" placeholder="Hasło" th:field="*{password}" id="password1" />
+          <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
         </div>
         <div class="form-group">
-          <input type="password" name="password2" placeholder="Powtórz hasło" />
+          <input type="password" name="password2" placeholder="Powtórz hasło" id="password2"/>
+          <p id="password_check"></p>
         </div>
 
         <div class="form-group form-group--buttons">
           <a th:href="@{/charity/login}" class="btn btn--without-border">Zaloguj się</a>
           <button class="btn" type="submit">Załóż konto</button>
-        </div>
-        <div class="ui-state-error">
-          <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-        </div>
-        <div class="ui-state-error">
-          <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
         </div>
       </form>
     </section>

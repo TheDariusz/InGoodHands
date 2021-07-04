@@ -3,11 +3,12 @@
 
 <div th:replace="fragments/header :: head"></div>
 <body>
-<!--<div th:replace="fragments/header :: header"></div>-->
-
+<header>
+<div th:replace="fragments/header :: nav"></div>
+</header>
     <section class="login-page">
-      <h1 th:text="${param.message[0]}">Error Message</h1>
-    <a th:href="@{/charity/registration}" th:text="signup">signup</a>
+      <h1 th:text="${message}?: 'Invalid registration token'">Error Message</h1>
+      <h2><a th:href="@{/charity/registration}" th:utext="'please register'">signup</a></h2>
     </section>
 
 <div th:replace="fragments/footer :: foot"></div>
